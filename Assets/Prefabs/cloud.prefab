@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1559690531426675177}
   - component: {fileID: 1559690531426675178}
   m_Layer: 0
-  m_Name: cloud
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,4 +133,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c39ab62130435d14dba8d43e2647fdbf, type: 3}
   - {fileID: 21300000, guid: 54968eb7f2394374fb2620106d359ed7, type: 3}
   speedMin: 0.5
-  speedMax: 5
+  speedMax: 3.5
