@@ -3,10 +3,16 @@ using UnityEngine;
 public class SubmarineController : MonoBehaviour
 {
     [SerializeField]
-    float moveForce = 100f; // Amount of force added to move the player
+    float moveHorizontalForce = 100f; // Amount of force added to move the player
+    
+    [SerializeField]
+    float moveVerticalForce = 100f; // Amount of force added to move the player
 
     [SerializeField]
-    float maxSpeed = 2f;
+    float maxHorizontalSpeed = 2f;
+    
+    [SerializeField]
+    float maxVerticalSpeed = 2f;
 
     [SerializeField]
     bool facingRight;   // For determining which way the player is currently facing.
@@ -34,14 +40,14 @@ public class SubmarineController : MonoBehaviour
         direction.y = Input.GetAxis("Vertical");
 
         // If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-        if (direction.x * rigidBody.velocity.x < maxSpeed)
+        if (direction.x * rigidBody.velocity.x < maxHorizontalSpeed)
         {
-            rigidBody.AddForce(Vector2.right * direction.x * moveForce);
+            rigidBody.AddForce(Vector2.right * direction.x * moveHorizontalForce);
         }
 
-        if (direction.y * rigidBody.velocity.y < maxSpeed)
+        if (direction.y * rigidBody.velocity.y < maxVerticalSpeed)
         {
-            rigidBody.AddForce(Vector2.up * direction.y * moveForce);
+            rigidBody.AddForce(Vector2.up * direction.y * moveVerticalForce);
         }
 
         // If the input is moving the player right and the player is facing left...

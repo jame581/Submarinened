@@ -1336,8 +1336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5612c123ca16d7f4e975301d7418e713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 100
-  maxSpeed: 5
+  moveHorizontalForce: 1500
+  moveVerticalForce: 100
+  maxHorizontalSpeed: 3
+  maxVerticalSpeed: 3
   facingRight: 0
 --- !u!50 &868010736
 Rigidbody2D:
