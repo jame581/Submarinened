@@ -23,6 +23,9 @@ public class SubmarineController : MonoBehaviour
     [SerializeField]
     bool facingRight;   // For determining which way the player is currently facing.
 
+    [SerializeField]
+    Animator UIAnimator;
+
 
     Rigidbody2D rigidBody;
 
@@ -38,6 +41,14 @@ public class SubmarineController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        if (UIAnimator == null)
+        {
+            Debug.LogError("UI Animator must be set!", UIAnimator);
+        }    
     }
 
     void FixedUpdate()
@@ -85,13 +96,13 @@ public class SubmarineController : MonoBehaviour
         hitTaken = true;
 
         health--;
+        UIAnimator.SetInteger("HearthCount", health);
 
         if (health <= 0)
         {
-            // TODO: EndGame
         }
 
-        Invoke("TurnOffImunity", 3.0f);
+        Invoke("TurnOffImunity", 2.5f);
     }
 
     void TurnOffImunity()
