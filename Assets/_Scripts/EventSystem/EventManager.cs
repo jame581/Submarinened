@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private Dictionary<string, Action> eventDictionary;
-
-    void Awake()
-    {
-        if (eventDictionary == null)
-            eventDictionary = new Dictionary<string, Action>();
-
-    }
+    private Dictionary<string, Action> eventDictionary = new Dictionary<string, Action>();
 
     public void StartListening(string eventName, Action listener)
     {
