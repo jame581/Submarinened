@@ -24,12 +24,41 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     float spawnRate = 3.0f;
 
+    [SerializeField]
+    EventManager EventManager;
+
     bool spawning = true;
+
+    Coroutine spawnCoroutine;
+
+    void Awake()
+    {
+        if (EventManager == null)
+        {
+            GameObject gameController = GameObject.FindGameObjectWithTag("GameController");
+            EventManager = gameController?.GetComponent<EventManager>();
+
+            if (EventManager == null)
+            {
+                Debug.LogError($"Event manager reference missing on {gameObject.name}!", this);
+            }
+        }
+    }
+
+    void OnEnable()
+    {
+        EventManager.StartListening(EventConstants.OnGameOver, StopSpawning);
+    }
+
+    void OnDisable()
+    {
+        EventManager.StopListening(EventConstants.OnGameOver, StopSpawning);
+    }
 
     // Update is called once per frame
     void Start()
     {
-        StartCoroutine(SpawnObject());
+        spawnCoroutine = StartCoroutine(SpawnObject());
     }
 
     IEnumerator SpawnObject()
@@ -55,5 +84,10 @@ public class Spawner : MonoBehaviour
     float GetModifier(float modifier)
     {
         return Random.Range(-modifier, modifier);
+    }
+
+    void StopSpawning()
+    {
+        StopCoroutine(spawnCoroutine);
     }
 }

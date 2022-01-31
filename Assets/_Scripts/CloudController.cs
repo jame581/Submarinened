@@ -1,14 +1,5 @@
 using UnityEngine;
 
-//public class Limit
-//{
-//    [SerializeField]
-//    public float Min;
-
-//    [SerializeField]
-//    public float Max;
-//}
-
 public class CloudController : MonoBehaviour
 {
     [SerializeField]

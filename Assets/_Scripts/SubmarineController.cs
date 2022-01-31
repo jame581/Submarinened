@@ -26,6 +26,9 @@ public class SubmarineController : MonoBehaviour
     [SerializeField]
     Animator UIAnimator;
 
+    [SerializeField]
+    EventManager EventManager;
+
 
     Rigidbody2D rigidBody;
 
@@ -41,6 +44,15 @@ public class SubmarineController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if (rigidBody == null)
+            Debug.LogError($"RigidBody reference missing on {gameObject.name}!", this);
+
+        if (animator == null)
+            Debug.LogError($"Animator reference missing on {gameObject.name}!", this);
+
+        if (EventManager == null)
+            Debug.LogError($"Event manager reference missing on {gameObject.name}!", this);
     }
 
     void Start()
@@ -48,13 +60,12 @@ public class SubmarineController : MonoBehaviour
         if (UIAnimator == null)
         {
             Debug.LogError("UI Animator must be set!", UIAnimator);
-        }    
+        }
     }
 
     void FixedUpdate()
     {
-        if (rigidBody == null) return;
-        if (animator == null) return;
+        if (health <= 0) return;
 
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
@@ -92,7 +103,7 @@ public class SubmarineController : MonoBehaviour
     void TakeHit()
     {
         if (hitTaken) return;
-            
+
         hitTaken = true;
 
         health--;
@@ -100,6 +111,7 @@ public class SubmarineController : MonoBehaviour
 
         if (health <= 0)
         {
+            EventManager.TriggerEvent(EventConstants.OnPlayerDeath);
         }
 
         Invoke("TurnOffImunity", 2.5f);
