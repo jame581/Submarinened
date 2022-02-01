@@ -107,7 +107,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
 
         GameOverText.text = $"Time: {timer:0.0} s"; /*\nYour score: {score}*/
+        SaveHighScores();
+    }
 
+    void SaveHighScores()
+    {
         if (PlayerPrefs.GetFloat("highscore_time") < timer)
         {
             PlayerPrefs.SetFloat("highscore_time", timer);
@@ -145,6 +149,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
+        SaveHighScores();
         SceneManager.LoadScene(levelName);
     }
 }
