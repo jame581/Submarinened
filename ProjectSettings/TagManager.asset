@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Missiles
+  - WaterSurface
+  - OceanBottom
   layers:
   - Default
   - TransparentFX

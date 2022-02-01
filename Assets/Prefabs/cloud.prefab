@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1559690531426675179}
   - component: {fileID: 1559690531426675177}
   - component: {fileID: 1559690531426675178}
+  - component: {fileID: -5278254438055955726}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -134,3 +135,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 54968eb7f2394374fb2620106d359ed7, type: 3}
   speedMin: 0.5
   speedMax: 3.5
+--- !u!50 &-5278254438055955726
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559690531426675181}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

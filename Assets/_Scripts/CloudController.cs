@@ -30,8 +30,8 @@ public class CloudController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position = new Vector2(transform.position.x + movementSpeed * Time.deltaTime, transform.position.y);
+        GetComponent<Rigidbody2D>().transform.position = new Vector2(transform.position.x + movementSpeed * Time.deltaTime, transform.position.y);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DestroyEverything : MonoBehaviour
+public class DestroyOnExit : MonoBehaviour
 {
     void OnTriggerExit2D(Collider2D collider)
     {

@@ -25,6 +25,9 @@ public class Spawner : MonoBehaviour
     float spawnRate = 3.0f;
 
     [SerializeField]
+    float startSpawnDelay = 3.0f;
+
+    [SerializeField]
     EventManager EventManager;
 
     bool spawning = true;
@@ -57,6 +60,11 @@ public class Spawner : MonoBehaviour
 
     // Update is called once per frame
     void Start()
+    {
+        Invoke("StartSpawnCoroutine", startSpawnDelay);
+    }
+
+    void StartSpawnCoroutine()
     {
         spawnCoroutine = StartCoroutine(SpawnObject());
     }

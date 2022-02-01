@@ -3,11 +3,21 @@ using UnityEngine;
 
 public class MissilesController : MonoBehaviour
 {
+    [SerializeField]
+    float airMovementSpeed = 2.0f;
+
+    [SerializeField]
+    float waterMovementSpeed = 1.0f;
+
     Animator animator;
 
     bool readyToBlow = false;
 
     bool missilesBlowed = false;
+
+    bool isInWater = false;
+
+    bool stopMoving = false;
 
     public bool MissilesBlowed { get => missilesBlowed; }
 
@@ -15,10 +25,23 @@ public class MissilesController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+    void FixedUpdate()
+    {
+        if (stopMoving) return;
+
+        if (!isInWater)
+        {
+            GetComponent<Rigidbody2D>().transform.position = new Vector2(transform.position.x, transform.position.y - airMovementSpeed * Time.deltaTime);
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().transform.position = new Vector2(transform.position.x, transform.position.y - waterMovementSpeed * Time.deltaTime);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player") && readyToBlow)
+        if ((collider.CompareTag("Player") || collider.CompareTag("OceanBottom")) && readyToBlow)
         {
             readyToBlow = false;
             StartCoroutine(DestroyObject());
@@ -34,10 +57,19 @@ public class MissilesController : MonoBehaviour
         }
     }
 
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("WaterSurface"))
+        {
+            isInWater = true;
+        }
+    }
+
     IEnumerator DestroyObject()
     {
         animator.SetBool("Blow", true);
         missilesBlowed = true;
+        stopMoving = true;
 
         yield return new WaitForSeconds(0.8f);
 

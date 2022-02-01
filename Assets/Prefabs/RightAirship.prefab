@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1982773599}
   - component: {fileID: -7213502509537452731}
   m_Layer: 0
-  m_Name: Airship
+  m_Name: RightAirship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d550f4b243ead1643861d6bde56b1b64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 4.69}
@@ -133,7 +133,7 @@ MonoBehaviour:
   movementSpeed: 3
   movementSpeedModifier: 0
   fireRate: 2.5
-  flightFromLeftToRight: 1
+  flightFromLeftToRight: 0
 --- !u!61 &1982773599
 BoxCollider2D:
   m_ObjectHideFlags: 0
