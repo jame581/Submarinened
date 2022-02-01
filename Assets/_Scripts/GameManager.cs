@@ -1,18 +1,29 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI TimeText;
+
     public EventManager EventManager;
+
+    float timer = 0.0f;
+
+    bool isGameOver = false;
 
     void Awake()
     {
         if (EventManager == null)
         {
             EventManager = GetComponent<EventManager>();
+
             if (EventManager == null)
-            {
-                Debug.LogError("Event manage reference missing!", this);
-            }
+                Debug.LogError($"Event manage reference missing on {gameObject.name}!", this);
+
+            if (TimeText == null)
+                Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
         }
     }
 
@@ -37,7 +48,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!isGameOver)
+            UpdateTimer();
     }
 
     void GameOver()
@@ -45,5 +57,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over called!");
 
         EventManager.TriggerEvent(EventConstants.OnGameOver);
+    }
+
+    void UpdateTimer()
+    {
+        timer += Time.deltaTime;
+        TimeText.text = $"Time: {timer:0.0} s";
     }
 }
