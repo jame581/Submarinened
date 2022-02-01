@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     [Header("References Settings")]
     [SerializeField]
     TextMeshProUGUI TimeText;
+    
+    [SerializeField]
+    TextMeshProUGUI CointText;
 
     [SerializeField]
     TextMeshProUGUI GameOverText;
@@ -39,8 +42,8 @@ public class GameManager : MonoBehaviour
         if (TimeText == null)
             Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
 
-        if (TimeText == null)
-            Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
+        if (CointText == null)
+            Debug.LogError($"CointText reference missing on {gameObject.name}!", this);
 
         if (GameOverText == null)
             Debug.LogError($"GameOverText reference missing on {gameObject.name}!", this);
@@ -59,12 +62,14 @@ public class GameManager : MonoBehaviour
     {
         EventManager.StartListening(EventConstants.OnPlayerDeath, GameOver);
         EventManager.StartListening(EventConstants.OnOxygenOut, GameOver);
+        EventManager.StartListening(EventConstants.OnCoinPickUp, HandlePickUpCoin);
     }
 
     void OnDisable()
     {
         EventManager.StopListening(EventConstants.OnPlayerDeath, GameOver);
         EventManager.StopListening(EventConstants.OnOxygenOut, GameOver);
+        EventManager.StopListening(EventConstants.OnCoinPickUp, HandlePickUpCoin);
     }
 
     // Start is called before the first frame update
@@ -107,6 +112,17 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("highscore_time", timer);
         }
+
+        if (PlayerPrefs.GetInt("highscore_score") < score)
+        {
+            PlayerPrefs.SetInt("highscore_score", score);
+        }
+    }
+
+    void HandlePickUpCoin()
+    {
+        score++;
+        CointText.text = $"Coins: {score}";
     }
 
     void UpdateTimer()
