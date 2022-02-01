@@ -9,6 +9,12 @@ public class MissilesController : MonoBehaviour
     [SerializeField]
     float waterMovementSpeed = 1.0f;
 
+    [SerializeField]
+    float readyModifierMinimum = 0.5f;
+
+    [SerializeField]
+    float readyModifierMaximum = 2.5f;
+
     Animator animator;
 
     bool readyToBlow = false;
@@ -25,6 +31,13 @@ public class MissilesController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+
+    void Start()
+    {
+        float readyModifier = Random.Range(readyModifierMinimum, readyModifierMaximum);
+        animator.SetFloat("ReadyModifier", readyModifier);
+    }
+
     void FixedUpdate()
     {
         if (stopMoving) return;

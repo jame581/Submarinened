@@ -145,6 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airMovementSpeed: 2
   waterMovementSpeed: 1
+  readyModifierMinimum: 0.5
+  readyModifierMaximum: 2
 --- !u!50 &-257624718238929390
 Rigidbody2D:
   serializedVersion: 4
