@@ -5,14 +5,22 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI TimeText;
+    TextMeshProUGUI TimeText; 
+    
+    [SerializeField]
+    TextMeshProUGUI GameOverText;
 
     [SerializeField]
     GameObject InGameMenuPanel;
+    
+    [SerializeField]
+    GameObject GameOverPanel;
 
     public EventManager EventManager;
 
     float timer = 0.0f;
+
+    int score = 0;
 
     bool isGameOver = false;
 
@@ -32,11 +40,18 @@ public class GameManager : MonoBehaviour
 
         if (TimeText == null)
             Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
+        
+        if (GameOverText == null)
+            Debug.LogError($"GameOverText reference missing on {gameObject.name}!", this);
 
         if (InGameMenuPanel == null)
             Debug.LogError($"InGameMenuPanel reference missing on {gameObject.name}!", this);
+        
+        if (GameOverPanel == null)
+            Debug.LogError($"GameOverPanel reference missing on {gameObject.name}!", this);
 
         InGameMenuPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
     }
 
     void OnEnable()
@@ -81,6 +96,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over called!");
 
         EventManager.TriggerEvent(EventConstants.OnGameOver);
+
+        GameOverPanel.SetActive(true);
+        Time.timeScale = 0;
+
+        GameOverText.text = $"Time: {timer:0.0} s\nYour score: {score}";
     }
 
     void UpdateTimer()
