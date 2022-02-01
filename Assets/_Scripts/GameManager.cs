@@ -1,11 +1,14 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI TimeText;
+
+    [SerializeField]
+    GameObject InGameMenuPanel;
 
     public EventManager EventManager;
 
@@ -22,9 +25,18 @@ public class GameManager : MonoBehaviour
             if (EventManager == null)
                 Debug.LogError($"Event manage reference missing on {gameObject.name}!", this);
 
-            if (TimeText == null)
-                Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
         }
+
+        if (TimeText == null)
+            Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
+
+        if (TimeText == null)
+            Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
+
+        if (InGameMenuPanel == null)
+            Debug.LogError($"InGameMenuPanel reference missing on {gameObject.name}!", this);
+
+        InGameMenuPanel.SetActive(false);
     }
 
     void OnEnable()
@@ -42,12 +54,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (InGameMenuPanel.activeInHierarchy)
+            {
+                HideInGameMenu();
+            }
+            else
+            {
+                ShowInGameMenu();
+            }
+        }
+
         if (!isGameOver)
             UpdateTimer();
     }
@@ -63,5 +87,22 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         TimeText.text = $"Time: {timer:0.0} s";
+    }
+
+    public void ShowInGameMenu()
+    {
+        Time.timeScale = 0;
+        InGameMenuPanel.SetActive(true);
+    }
+
+    public void HideInGameMenu()
+    {
+        InGameMenuPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 }
