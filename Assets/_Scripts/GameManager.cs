@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("References Settings")]
     [SerializeField]
     TextMeshProUGUI TimeText; 
     

@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CloudController : MonoBehaviour
 {
+    [Header("Sprites Settings")]
     [SerializeField]
     Sprite[] sprites;
 
+    [Header("Movement Settings")]
     [SerializeField]
     float speedMin;
 

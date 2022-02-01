@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SubmarineController : MonoBehaviour
 {
+    [Header("Move Settings")]
     [SerializeField]
     float moveHorizontalForce = 100f; // Amount of force added to move the player
 
@@ -14,12 +15,17 @@ public class SubmarineController : MonoBehaviour
     [SerializeField]
     float maxVerticalSpeed = 2f;
 
+    [Header("Oxygen Settings")]
     [SerializeField]
     float increaseOxygenSpeed = 0.25f;
     
     [SerializeField]
     float decreaseOxygenSpeed = 0.1f;
 
+    [SerializeField]
+    float oxygenDecreaseRate = 1.0f;
+
+    [Header("Animation Settings")]
     [SerializeField]
     float moveAnimationSpeed = 0.6f;
 
@@ -29,6 +35,7 @@ public class SubmarineController : MonoBehaviour
     [SerializeField]
     bool facingRight;   // For determining which way the player is currently facing.
 
+    [Header("References Settings")]
     [SerializeField]
     Animator UIAnimator;
 
@@ -37,9 +44,6 @@ public class SubmarineController : MonoBehaviour
 
     [SerializeField]
     ProgressBar OxygenBar;
-
-    [SerializeField]
-    float oxygenDecreaseRate = 1.0f;
 
     Rigidbody2D rigidBody;
 

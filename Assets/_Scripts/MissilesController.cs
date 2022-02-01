@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class MissilesController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField]
     float airMovementSpeed = 2.0f;
 
     [SerializeField]
     float waterMovementSpeed = 1.0f;
 
+    [Header("Detonate Settings")]
     [SerializeField]
     float readyModifierMinimum = 0.5f;
 

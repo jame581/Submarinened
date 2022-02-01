@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+    [Header("Shooter Settings")]
     [SerializeField]
     GameObject projectile;
 
@@ -9,13 +10,14 @@ public class ShipController : MonoBehaviour
     Transform spawnSpot;
 
     [SerializeField]
+    float fireRate;
+
+    [Header("Movement Settings")]
+    [SerializeField]
     float movementSpeed;
 
     [SerializeField]
     float movementSpeedModifier;
-
-    [SerializeField]
-    float fireRate;
 
     [SerializeField]
     bool flightFromLeftToRight = true;

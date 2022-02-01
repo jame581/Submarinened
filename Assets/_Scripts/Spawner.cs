@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Object Settings")]
     [SerializeField]
     GameObject objectToSpawn;
 
@@ -12,6 +13,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     int numberToSpawn = 0;
 
+    [Header("Position Spawn Settings")]
     [SerializeField]
     float positionXModifier = 2.0f;
 
