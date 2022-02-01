@@ -1,6 +1,8 @@
 # Submarinened
 2D game made with Unity game engine. I'd like to try make little game in small amount of time, so I set 10 hours limit on this project and try to create and implement little funny game.
 
+**[You can try play the game here](https://submarined.azurewebsites.net/)**
+
 ## Game describe
 
 Player control submarines, try to avoid missiles and survive. Player needs to watch out for oxygen level and have to go up to surface to refill it.
@@ -8,6 +10,7 @@ Player control submarines, try to avoid missiles and survive. Player needs to wa
 ### Controls
 
 * WASD - movement
+* ESC - Show In Game Menu
 
 ### Prerequisites
 
