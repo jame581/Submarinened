@@ -12,7 +12,7 @@ public class ProgressBar : MonoBehaviour
 
     void Awake()
     {
-        slider = gameObject.GetComponent<Slider>();
+        slider = GetComponent<Slider>();
 
         if (slider == null)
             Debug.LogError($"Slider reference missing on {gameObject.name}!", this);

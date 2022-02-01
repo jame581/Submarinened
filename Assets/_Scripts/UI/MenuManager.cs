@@ -40,4 +40,9 @@ public class MenuManager : MonoBehaviour
     {
         CreditsPanel.SetActive(false);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
