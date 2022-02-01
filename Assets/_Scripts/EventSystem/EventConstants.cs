@@ -7,4 +7,5 @@ public static class EventConstants
 
     // Player events
     public const string OnPlayerDeath = "OnPlayerDeath";
+    public const string OnOxygenOut = "OnOxygenOut";
 }

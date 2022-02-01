@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.StartListening(EventConstants.OnPlayerDeath, GameOver);
+        EventManager.StartListening(EventConstants.OnOxygenOut, GameOver);
     }
 
     void OnDisable()
     {
         EventManager.StopListening(EventConstants.OnPlayerDeath, GameOver);
+        EventManager.StopListening(EventConstants.OnOxygenOut, GameOver);
     }
 
     // Start is called before the first frame update

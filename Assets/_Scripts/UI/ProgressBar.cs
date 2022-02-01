@@ -13,6 +13,9 @@ public class ProgressBar : MonoBehaviour
     void Awake()
     {
         slider = gameObject.GetComponent<Slider>();
+
+        if (slider == null)
+            Debug.LogError($"Slider reference missing on {gameObject.name}!", this);
     }
 
     // Update is called once per frame
@@ -31,13 +34,21 @@ public class ProgressBar : MonoBehaviour
         {
             targetProgress = slider.maxValue;
         }
-        else if ((slider.value + newProgress) < slider.minValue)
+        else
+        {
+            targetProgress = slider.value + newProgress;
+        }
+    }
+
+    public void DecrementProgress(float newProgress)
+    {
+        if ((slider.value - newProgress) < slider.minValue)
         {
             targetProgress = slider.minValue;
         }
         else
         {
-            targetProgress = slider.value + newProgress;
+            targetProgress = slider.value - newProgress;
         }
     }
 
@@ -55,5 +66,10 @@ public class ProgressBar : MonoBehaviour
         {
             targetProgress = newProgress;
         }
+    }
+
+    public float GetSliderValue()
+    {
+        return slider.value;
     }
 }

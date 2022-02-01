@@ -15,6 +15,12 @@ public class SubmarineController : MonoBehaviour
     float maxVerticalSpeed = 2f;
 
     [SerializeField]
+    float increaseOxygenSpeed = 0.25f;
+    
+    [SerializeField]
+    float decreaseOxygenSpeed = 0.1f;
+
+    [SerializeField]
     float moveAnimationSpeed = 0.6f;
 
     [SerializeField]
@@ -29,6 +35,8 @@ public class SubmarineController : MonoBehaviour
     [SerializeField]
     EventManager EventManager;
 
+    [SerializeField]
+    ProgressBar OxygenBar;
 
     Rigidbody2D rigidBody;
 
@@ -39,6 +47,8 @@ public class SubmarineController : MonoBehaviour
     int health = 3;
 
     bool hitTaken = false;
+
+    bool OxygenOut = false;
 
     void Awake()
     {
@@ -53,6 +63,9 @@ public class SubmarineController : MonoBehaviour
 
         if (EventManager == null)
             Debug.LogError($"Event manager reference missing on {gameObject.name}!", this);
+        
+        if (OxygenBar == null)
+            Debug.LogError($"OxygenBar reference missing on {gameObject.name}!", this);
     }
 
     void Start()
@@ -61,11 +74,13 @@ public class SubmarineController : MonoBehaviour
         {
             Debug.LogError("UI Animator must be set!", UIAnimator);
         }
+
+        InvokeRepeating("DecreaseOxygen", 1.0f, 1.0f);
     }
 
     void FixedUpdate()
     {
-        if (health <= 0) return;
+        if (health <= 0 || OxygenOut) return;
 
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
@@ -133,6 +148,12 @@ public class SubmarineController : MonoBehaviour
                 TakeHit();
             }
         }
+
+        if (collider.CompareTag("WaterSurface"))
+        {
+            CancelInvoke("DecreaseOxygen");
+            InvokeRepeating("IncreaseOxygen", 0.5f, 0.5f);                      
+        }
     }
 
     void OnTriggerStay2D(Collider2D collider)
@@ -145,6 +166,31 @@ public class SubmarineController : MonoBehaviour
                 animator.SetTrigger("Hit");
                 TakeHit();
             }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.CompareTag("WaterSurface"))
+        {
+            CancelInvoke("IncreaseOxygen");
+            InvokeRepeating("DecreaseOxygen", 1.0f, 1.0f);
+        }
+    }
+
+    void IncreaseOxygen()
+    {
+        OxygenBar.IncrementProgress(increaseOxygenSpeed);
+    }
+    
+    void DecreaseOxygen()
+    {
+        OxygenBar.DecrementProgress(decreaseOxygenSpeed);
+
+        if (OxygenBar.GetSliderValue() <= 0)
+        {
+            EventManager.TriggerEvent(EventConstants.OnOxygenOut);
+            OxygenOut = true;
         }
     }
 }
