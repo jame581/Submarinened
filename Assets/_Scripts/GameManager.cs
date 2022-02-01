@@ -6,14 +6,14 @@ public class GameManager : MonoBehaviour
 {
     [Header("References Settings")]
     [SerializeField]
-    TextMeshProUGUI TimeText; 
-    
+    TextMeshProUGUI TimeText;
+
     [SerializeField]
     TextMeshProUGUI GameOverText;
 
     [SerializeField]
     GameObject InGameMenuPanel;
-    
+
     [SerializeField]
     GameObject GameOverPanel;
 
@@ -41,13 +41,13 @@ public class GameManager : MonoBehaviour
 
         if (TimeText == null)
             Debug.LogError($"TimeText reference missing on {gameObject.name}!", this);
-        
+
         if (GameOverText == null)
             Debug.LogError($"GameOverText reference missing on {gameObject.name}!", this);
 
         if (InGameMenuPanel == null)
             Debug.LogError($"InGameMenuPanel reference missing on {gameObject.name}!", this);
-        
+
         if (GameOverPanel == null)
             Debug.LogError($"GameOverPanel reference missing on {gameObject.name}!", this);
 
@@ -102,6 +102,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
 
         GameOverText.text = $"Time: {timer:0.0} s"; /*\nYour score: {score}*/
+
+        if (PlayerPrefs.GetFloat("highscore_time") < timer)
+        {
+            PlayerPrefs.SetFloat("highscore_time", timer);
+        }
     }
 
     void UpdateTimer()
