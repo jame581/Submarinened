@@ -38,6 +38,9 @@ public class SubmarineController : MonoBehaviour
     [SerializeField]
     ProgressBar OxygenBar;
 
+    [SerializeField]
+    float oxygenDecreaseRate = 1.0f;
+
     Rigidbody2D rigidBody;
 
     Animator animator;
@@ -49,6 +52,7 @@ public class SubmarineController : MonoBehaviour
     bool hitTaken = false;
 
     bool OxygenOut = false;
+
 
     void Awake()
     {
@@ -75,7 +79,7 @@ public class SubmarineController : MonoBehaviour
             Debug.LogError("UI Animator must be set!", UIAnimator);
         }
 
-        InvokeRepeating("DecreaseOxygen", 1.0f, 1.0f);
+        InvokeRepeating("DecreaseOxygen", 2.0f, oxygenDecreaseRate);
     }
 
     void FixedUpdate()
@@ -174,7 +178,7 @@ public class SubmarineController : MonoBehaviour
         if (collider.CompareTag("WaterSurface"))
         {
             CancelInvoke("IncreaseOxygen");
-            InvokeRepeating("DecreaseOxygen", 1.0f, 1.0f);
+            InvokeRepeating("DecreaseOxygen", 1.0f, oxygenDecreaseRate);
         }
     }
 

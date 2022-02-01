@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         GameOverPanel.SetActive(true);
         Time.timeScale = 0;
 
-        GameOverText.text = $"Time: {timer:0.0} s\nYour score: {score}";
+        GameOverText.text = $"Time: {timer:0.0} s"; /*\nYour score: {score}*/
     }
 
     void UpdateTimer()

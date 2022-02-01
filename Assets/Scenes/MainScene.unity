@@ -4449,7 +4449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900450a65a5f9174cb64df7b4e6bd27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillSpeed: 0.25
+  fillSpeed: 0.2
 --- !u!1 &1528038059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5788,5 +5788,17 @@ PrefabInstance:
       propertyPath: EventManager
       value: 
       objectReference: {fileID: 397440973}
+    - target: {fileID: 1578710326093594367, guid: 738ea7d2f8d88a34aa0a9a74ee5f1d70, type: 3}
+      propertyPath: oxygenDecreaseRate
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578710326093594367, guid: 738ea7d2f8d88a34aa0a9a74ee5f1d70, type: 3}
+      propertyPath: decreaseOxygenSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578710326093594367, guid: 738ea7d2f8d88a34aa0a9a74ee5f1d70, type: 3}
+      propertyPath: increaseOxygenSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 738ea7d2f8d88a34aa0a9a74ee5f1d70, type: 3}

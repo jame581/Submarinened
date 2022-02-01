@@ -8,7 +8,7 @@ public class ProgressBar : MonoBehaviour
 
     Slider slider;
 
-    float targetProgress = 0;
+    float targetProgress = 1;
 
     void Awake()
     {
