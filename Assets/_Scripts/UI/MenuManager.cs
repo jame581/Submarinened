@@ -6,17 +6,23 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject CreditsPanel;
 
+    public GameObject ControlPanel;
+
     public TextMeshProUGUI HighScoreText;
 
     void Start()
     {
         if (CreditsPanel == null)
             Debug.LogError($"CreditsPanel reference missing on {gameObject.name}!", this);
+        
+        if (ControlPanel == null)
+            Debug.LogError($"ControlPanel reference missing on {gameObject.name}!", this);
 
         if (HighScoreText == null)
             Debug.LogError($"HighScoreText reference missing on {gameObject.name}!", this);
 
         CreditsPanel.SetActive(false);
+        ControlPanel.SetActive(true);
 
         float bestTime = PlayerPrefs.GetFloat("highscore_time", 0.0f);
         int highScore = PlayerPrefs.GetInt("highscore_score", 0);
@@ -45,11 +51,13 @@ public class MenuManager : MonoBehaviour
     public void ShowCredits()
     {
         CreditsPanel.SetActive(true);
+        ControlPanel.SetActive(false);
     }
 
     public void HideCredits()
     {
         CreditsPanel.SetActive(false);
+        ControlPanel.SetActive(true);
     }
 
     public void QuitGame()
