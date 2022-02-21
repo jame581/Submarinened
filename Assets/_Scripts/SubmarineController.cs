@@ -18,7 +18,7 @@ public class SubmarineController : MonoBehaviour
     [Header("Oxygen Settings")]
     [SerializeField]
     float increaseOxygenSpeed = 0.25f;
-    
+
     [SerializeField]
     float decreaseOxygenSpeed = 0.1f;
 
@@ -57,6 +57,12 @@ public class SubmarineController : MonoBehaviour
 
     bool OxygenOut = false;
 
+    // Touch & Mouse control
+    Vector2 LastClickedPosition;
+
+    bool isMoving = false;
+
+    bool isTouchInputAvailable = false;
 
     void Awake()
     {
@@ -71,9 +77,11 @@ public class SubmarineController : MonoBehaviour
 
         if (EventManager == null)
             Debug.LogError($"Event manager reference missing on {gameObject.name}!", this);
-        
+
         if (OxygenBar == null)
             Debug.LogError($"OxygenBar reference missing on {gameObject.name}!", this);
+
+        isTouchInputAvailable = Input.touchSupported;
     }
 
     void Start()
@@ -90,6 +98,19 @@ public class SubmarineController : MonoBehaviour
     {
         if (health <= 0 || OxygenOut) return;
 
+        KeyboardMovement();
+
+        // Control for mobile devices
+        if (Input.GetMouseButton(0))
+        {
+            LastClickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            isMoving = true;
+            TouchOrClickMovement();
+        }
+    }
+
+    void KeyboardMovement()
+    {
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
 
@@ -109,6 +130,26 @@ public class SubmarineController : MonoBehaviour
 
         // If the input is moving the player right and the player is facing left...
         if (direction.x > 0 && !facingRight || direction.x < 0 && facingRight)
+            Flip();
+    }
+
+    void TouchOrClickMovement()
+    {
+        if (isMoving && (Vector2)transform.position != LastClickedPosition)
+        {
+            float step = maxHorizontalSpeed * Time.deltaTime;
+            rigidBody.MovePosition(Vector2.MoveTowards(transform.position, LastClickedPosition, step));
+
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        animator.SetFloat("Speed", isMoving ? moveAnimationSpeed : baseAnimationSpeed);
+
+        // If the input is moving the player right and the player is facing left...
+        if (LastClickedPosition.x > transform.position.x && !facingRight || LastClickedPosition.x < transform.position.x && facingRight)
             Flip();
     }
 
@@ -160,7 +201,7 @@ public class SubmarineController : MonoBehaviour
         if (collider.CompareTag("WaterSurface"))
         {
             CancelInvoke("DecreaseOxygen");
-            InvokeRepeating("IncreaseOxygen", 0.5f, 0.5f);                      
+            InvokeRepeating("IncreaseOxygen", 0.5f, 0.5f);
         }
     }
 
@@ -190,7 +231,7 @@ public class SubmarineController : MonoBehaviour
     {
         OxygenBar.IncrementProgress(increaseOxygenSpeed);
     }
-    
+
     void DecreaseOxygen()
     {
         OxygenBar.DecrementProgress(decreaseOxygenSpeed);
