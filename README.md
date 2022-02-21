@@ -12,13 +12,14 @@ Player control submarines, try to avoid missiles and survive. Player needs to wa
 
 * WASD - movement
 * ESC - Show In Game Menu
+* Click / Touch and submarine move to this position
 
 ### Prerequisites
 
 Software what you need is:
 
 * [Visual Studio 2022 (Version 17.0 or better)](https://visualstudio.microsoft.com/)
-* [Unity (2020.3.25f1 or better)](https://unity.com/download)
+* [Unity (2020.3.28f1 or better)](https://unity.com/download)
 
 That's it :)
 
