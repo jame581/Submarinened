@@ -2,7 +2,7 @@
 2D game made with Unity game engine. I'd like to try make little game in small amount of time, so I set 10 hours limit on this project and try to create and implement little funny game.
 
 
-**[You can try the game as WebGL build on this link](https://submarined.azurewebsites.net/)**
+**[You can try the game as WebGL build on this link](https://jame581.itch.io/submarinened)**
 
 ## Game describe
 
