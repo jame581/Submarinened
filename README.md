@@ -41,6 +41,8 @@ Couple others assets was used from website [opengameart.org](https://opengameart
 ## Author
 
 * **Jan Mesarč** - *Creator* - [jame581](https://jame581.azurewebsites.net/)
+* **Do you want support my work, my dreams?** - [Buy me a coffee](https://www.buymeacoffee.com/jame581)
+* **Take a look on my other games** - [itch.io](https://jame581.itch.io/)
 
 ## Screenshots
 ![MainGame](https://user-images.githubusercontent.com/21112138/152004678-51b74890-ae5b-4bae-b215-1173dce031e8.png)
