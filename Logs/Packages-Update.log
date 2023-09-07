@@ -87,3 +87,35 @@ The following packages were updated:
   com.unity.collab-proxy from version 1.15.15 to 1.17.6
   com.unity.ide.rider from version 3.0.13 to 3.0.15
   com.unity.ide.visualstudio from version 2.0.14 to 2.0.16
+
+=== Mon Apr 17 20:54:29 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.2d.animation from version 7.0.8 to 7.0.10
+  com.unity.2d.pixel-perfect from version 5.0.1 to 5.0.3
+  com.unity.2d.psdimporter from version 6.0.6 to 6.0.7
+  com.unity.2d.spriteshape from version 7.0.6 to 7.0.7
+  com.unity.collab-proxy from version 1.17.6 to 2.0.3
+  com.unity.ide.rider from version 3.0.15 to 3.0.18
+  com.unity.ide.visualstudio from version 2.0.16 to 2.0.17
+  com.unity.toolchain.win-x86_64-linux-x86_64 from version 1.0.0 to 2.0.4
+
+=== Thu Sep  7 20:18:14 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ai.navigation@1.1.4
+The following packages were updated:
+  com.unity.2d.animation from version 7.0.10 to 9.0.3
+  com.unity.2d.psdimporter from version 6.0.7 to 8.0.2
+  com.unity.2d.spriteshape from version 7.0.7 to 9.0.2
+  com.unity.collab-proxy from version 2.0.3 to 2.0.7
+  com.unity.ide.rider from version 3.0.18 to 3.0.24
+  com.unity.ide.visualstudio from version 2.0.17 to 2.0.18
+  com.unity.test-framework from version 1.1.31 to 1.1.33
+  com.unity.timeline from version 1.6.4 to 1.7.5

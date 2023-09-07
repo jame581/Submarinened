@@ -19,7 +19,7 @@ Player control submarines, try to avoid missiles and survive. Player needs to wa
 Software what you need is:
 
 * [Visual Studio 2022 (Version 17.0 or better)](https://visualstudio.microsoft.com/)
-* [Unity (2020.3.28f1 or better)](https://unity.com/download)
+* [Unity (2022.3.9f1 or better)](https://unity.com/download)
 
 That's it :)
 
